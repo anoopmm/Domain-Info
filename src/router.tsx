@@ -2,12 +2,12 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import HomeScreen from './screens/Home/home';
-import DetailsScreen from './screens/DomainDetails/domainDetails';
+import DomainDetailsScreen from './screens/DomainDetails/domainDetails';
 import SettingsScreen from './screens/Settings/settings';
 
 export type RootStackParamList = {
   Home: undefined;
-  Details: undefined;
+  DomainDetails: {url: string};
   Settings: undefined;
 };
 
@@ -22,7 +22,7 @@ function HomeStackScreen() {
   return (
     <Stack.Navigator initialRouteName="Home">
       <Stack.Screen name="Home" component={HomeScreen} />
-      <Stack.Screen name="Details" component={DetailsScreen} />
+      <Stack.Screen name="DomainDetails" component={DomainDetailsScreen} />
       <Stack.Screen name="Settings" component={SettingsScreen} />
     </Stack.Navigator>
   );
