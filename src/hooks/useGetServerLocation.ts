@@ -3,7 +3,7 @@ type LocationDetails = {
   country: string;
   region: string;
 };
-const useServerLocation = (url: string): [LocationDetails, boolean] => {
+const useGetServerLocation = (url: string): [LocationDetails, boolean] => {
   const [serverLocation, setServerLocation] = useState<object>({});
   const [loading, setLoading] = useState<boolean>(false);
   useEffect(() => {
@@ -34,4 +34,4 @@ const useServerLocation = (url: string): [LocationDetails, boolean] => {
   return [serverLocation, loading];
 };
 
-export default useServerLocation;
+export default useGetServerLocation;

@@ -1,6 +1,8 @@
-import React, {useEffect, useRef} from 'react';
+import React, {useEffect, useRef, useContext, useMemo} from 'react';
 import {Animated, ViewStyle, StyleProp, View} from 'react-native';
-import styles from './titleDescriptionLoader.style';
+import makeStyles from './titleDescriptionLoader.style';
+import {AppContext} from '../../theme/appContext';
+import {useTheme} from '@react-navigation/native';
 interface PulsatingViewProps {
   style?: StyleProp<ViewStyle>;
   titleRows?: number;
@@ -14,7 +16,14 @@ const TitleDescriptionLoader: React.FC<PulsatingViewProps> = ({
 }) => {
   const scaleAnim = useRef(new Animated.Value(1)).current;
   const opacityAnim = useRef(new Animated.Value(1)).current;
-
+  const {colors} = useTheme();
+  const {isDarkTheme, setIsDarkTheme, setColorPattern, colorPattern} =
+    useContext(AppContext);
+  console.log(colorPattern, colors[colorPattern]);
+  const styles = useMemo(
+    () => makeStyles(colors[colorPattern]),
+    [colors[colorPattern]],
+  );
   useEffect(() => {
     const pulse = Animated.loop(
       Animated.sequence([

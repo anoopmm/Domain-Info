@@ -7,13 +7,12 @@ const useWebsiteThumbnail = (url: string): [string, boolean] => {
   useEffect(() => {
     const fetchWebsiteThumbnail = async () => {
       try {
-        const apiKey = 'GTZ4YM6-V234TXZ-G0W761A-T4PJ0JB'; // Replace with your API key
+        const apiKey = 'GTZ4YM6-V234TXZ-G0W761A-T4PJ0JB';
         const apiUrl =
-          'https://shot.screenshotapi.net/screenshot?token=GTZ4YM6-V234TXZ-G0W761A-T4PJ0JB&url=' +
+          'https://shot.screenshotapi.net/screenshot?token=' +
+          apiKey +
+          '&url=' +
           url;
-        // const apiUrl = `https://api.screenshotapi.io/capture?url=${encodeURIComponent(
-        //   url,
-        // )}&apiKey=${apiKey}`;
 
         const response = await fetch(apiUrl);
         console.log('response', response);

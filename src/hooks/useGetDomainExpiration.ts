@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react';
 
-const useDomainExpiration = (url: string): [string, boolean] => {
+const useGetDomainExpiration = (url: string): [string, boolean] => {
   const [expirationDate, setExpirationDate] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
   useEffect(() => {
@@ -39,4 +39,4 @@ const useDomainExpiration = (url: string): [string, boolean] => {
   return [expirationDate, loading];
 };
 
-export default useDomainExpiration;
+export default useGetDomainExpiration;

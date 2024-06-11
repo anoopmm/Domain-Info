@@ -1,10 +1,12 @@
-import React, {useState} from 'react';
-import {View, Text, Button, Alert, TextInput} from 'react-native';
+import React, {useState, useContext, useMemo} from 'react';
+import {View, Text, Button, Alert, TextInput, Switch} from 'react-native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {RootStackParamList} from '../../router';
-import styles from './home.styles';
+import makeStyles from './home.styles';
 import {TouchableOpacity} from 'react-native-gesture-handler';
-
+import {AppContext} from '../../theme/appContext';
+import {useTheme} from '@react-navigation/native';
+import Header from '../../components/Header/header';
 type HomeScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Home'>;
 
 type Props = {
@@ -14,6 +16,14 @@ type Props = {
 export default function HomeScreen({navigation}: Props) {
   const [url, setUrl] = useState<string>('');
   const [validationMessage, setValidationMessage] = useState<string>('');
+  const {colors} = useTheme();
+  const {isDarkTheme, setIsDarkTheme, setColorPattern, colorPattern} =
+    useContext(AppContext);
+  console.log(colorPattern, colors[colorPattern]);
+  const styles = useMemo(
+    () => makeStyles(colors[colorPattern]),
+    [colors[colorPattern]],
+  );
   const handleSubmit = () => {
     const urlPattern = new RegExp(
       '^' + // start of string
@@ -69,22 +79,28 @@ export default function HomeScreen({navigation}: Props) {
   };
   return (
     <View style={styles.container}>
-      <Text style={styles.label}>Enter a URL:</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="https://example.com"
-        value={url}
-        onChangeText={handleTextChange}
-        keyboardType="url"
-        autoCapitalize="none"
-        autoCorrect={false}
-      />
-      {validationMessage ? (
-        <Text style={styles.validationMessage}>{validationMessage}</Text>
-      ) : null}
-      <TouchableOpacity style={styles.button} onPress={handleSubmit}>
-        <Text style={styles.buttonText}>SUBMIT</Text>
-      </TouchableOpacity>
+      <Header navigation={navigation} showBackButton={false} />
+      <View style={styles.contentContainer}>
+        <Text style={styles.label}>Enter a URL:</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="https://example.com"
+          value={url}
+          onChangeText={handleTextChange}
+          keyboardType="url"
+          autoCapitalize="none"
+          autoCorrect={false}
+        />
+        {validationMessage ? (
+          <Text style={styles.validationMessage}>{validationMessage}</Text>
+        ) : null}
+        <TouchableOpacity style={styles.button} onPress={handleSubmit}>
+          <Text style={styles.buttonText}>SUBMIT</Text>
+        </TouchableOpacity>
+        {/* <TouchableOpacity style={styles.button} onPress={shareContent}>
+          <Text style={{color: colors.primary}}>{colorPattern}</Text>
+        </TouchableOpacity> */}
+      </View>
     </View>
   );
 }

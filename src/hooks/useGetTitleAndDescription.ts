@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react';
 
-const useTitleAndDescription = (url: string): [string, string, boolean] => {
+const useGetTitleAndDescription = (url: string): [string, string, boolean] => {
   const [title, setTitle] = useState<string>('Unknown');
   const [loading, setLoading] = useState<boolean>(false);
   const [description, setDescription] = useState<string>('Unknown');
@@ -44,4 +44,4 @@ const useTitleAndDescription = (url: string): [string, string, boolean] => {
   return [title, description, loading];
 };
 
-export default useTitleAndDescription;
+export default useGetTitleAndDescription;
