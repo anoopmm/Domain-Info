@@ -9,7 +9,8 @@ const useWebsiteThumbnail = (url: string): [string, boolean] => {
       try {
         const apiKey = 'GTZ4YM6-V234TXZ-G0W761A-T4PJ0JB'; // Replace with your API key
         const apiUrl =
-          'https://whatcms.org/API/Tech?key=w3889ag43xknyknh6bujk0nz0mo5ouxbiohgo7wvtv9insmay7ocab2k30pffdr7jrpfl2&url=poptin.com';
+          'https://whatcms.org/API/Tech?key=w3889ag43xknyknh6bujk0nz0mo5ouxbiohgo7wvtv9insmay7ocab2k30pffdr7jrpfl2&url=' +
+          url;
         // const apiUrl = `https://api.screenshotapi.io/capture?url=${encodeURIComponent(
         //   url,
         // )}&apiKey=${apiKey}`;
@@ -17,7 +18,7 @@ const useWebsiteThumbnail = (url: string): [string, boolean] => {
         const response = await fetch(apiUrl);
         console.log('response', response);
         const data = await response.json();
-        console.log('response', data);
+        console.log('response', JSON.stringify(data));
 
         if (data && data.results) {
           let cms = '';

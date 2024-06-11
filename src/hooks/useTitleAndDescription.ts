@@ -9,7 +9,7 @@ const useTitleAndDescription = (url: string): [string, string, boolean] => {
     const getTitleAndDescription = async () => {
       setLoading(true);
       try {
-        const response = await fetch('http://www.poptin.com/');
+        const response = await fetch('http://' + url);
         const html = await response.text();
 
         // Extract title from HTML

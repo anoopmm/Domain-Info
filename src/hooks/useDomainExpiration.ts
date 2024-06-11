@@ -16,7 +16,7 @@ const useDomainExpiration = (url: string): [string, boolean] => {
           headers: myHeaders,
         };
         const response = await fetch(
-          'https://api.apilayer.com/whois/query?domain=poptin.com',
+          'https://api.apilayer.com/whois/query?domain=' + url,
           requestOptions,
         );
         const data = await response.json();

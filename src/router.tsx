@@ -21,8 +21,16 @@ const Stack = createStackNavigator<RootStackParamList>();
 function HomeStackScreen() {
   return (
     <Stack.Navigator initialRouteName="Home">
-      <Stack.Screen name="Home" component={HomeScreen} />
-      <Stack.Screen name="DomainDetails" component={DomainDetailsScreen} />
+      <Stack.Screen
+        name="Home"
+        component={HomeScreen}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="DomainDetails"
+        component={DomainDetailsScreen}
+        options={{headerShown: false}}
+      />
       <Stack.Screen name="Settings" component={SettingsScreen} />
     </Stack.Navigator>
   );

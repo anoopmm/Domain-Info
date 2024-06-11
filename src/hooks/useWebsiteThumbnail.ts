@@ -9,7 +9,8 @@ const useWebsiteThumbnail = (url: string): [string, boolean] => {
       try {
         const apiKey = 'GTZ4YM6-V234TXZ-G0W761A-T4PJ0JB'; // Replace with your API key
         const apiUrl =
-          'https://shot.screenshotapi.net/screenshot?token=GTZ4YM6-V234TXZ-G0W761A-T4PJ0JB&url=poptin.com';
+          'https://shot.screenshotapi.net/screenshot?token=GTZ4YM6-V234TXZ-G0W761A-T4PJ0JB&url=' +
+          url;
         // const apiUrl = `https://api.screenshotapi.io/capture?url=${encodeURIComponent(
         //   url,
         // )}&apiKey=${apiKey}`;
