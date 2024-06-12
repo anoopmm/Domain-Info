@@ -16,6 +16,7 @@ const makeStyles = (colors: any) =>
       shadowOpacity: 0.3,
       shadowRadius: 3,
       elevation: 5,
+      zIndex: 100,
     },
   });
 export default makeStyles;

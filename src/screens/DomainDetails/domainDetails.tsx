@@ -1,5 +1,5 @@
 import React, {useMemo} from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, ScrollView} from 'react-native';
 import {RouteProp} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {useTheme} from '@react-navigation/native';
@@ -54,55 +54,57 @@ export default function DetailsScreen({route, navigation}: DetailsScreenProps) {
   };
   return (
     <View style={styles.container}>
-      <Header navigation={navigation} showBackButton={true} />
-      <View style={styles.detailsContainer}>
-        <ImageWithLoading
-          source={{
-            uri: thumbnail,
-          }}
-          loading={lodaingImage}
-          loadingSize="large"
-        />
-        <View style={styles.domainView}>
-          <Text style={styles.domainText}>{url}</Text>
-        </View>
-        <TitleDescription
-          title={title}
-          description={desc}
-          loading={loadingSiteTitleAndDesc}
-          loaderConfig={{titleRows: 2, descRows: 3}}
-        />
-        <View style={styles.rowstyle}>
-          <View style={styles.coloumnStyle}>
-            <TitleDescription
-              title="CMS"
-              description={cms}
-              loading={isCMSLoading}
-              loaderConfig={{titleRows: 1, descRows: 1}}
-            />
-          </View>
-          <View style={styles.coloumnStyle}>
-            <TitleDescription
-              title="Location"
-              description={location.region + ', ' + location.country}
-              loaderConfig={{titleRows: 1, descRows: 1}}
-              loading={isLocationLoading}
-            />
-          </View>
-        </View>
-        <View style={styles.rowstyle}>
-          <View style={styles.coloumnStyle}>
-            <TitleDescription
-              title="Expiry"
-              description={domainExp}
-              loading={isDomainExpLoading}
-              loaderConfig={{titleRows: 1, descRows: 1}}
-            />
-          </View>
-          <View style={styles.coloumnStyle} />
-        </View>
-      </View>
       <FloatingButton onPress={shareContent} />
+      <Header navigation={navigation} showBackButton={true} />
+      <ScrollView>
+        <View style={styles.detailsContainer}>
+          <ImageWithLoading
+            source={{
+              uri: thumbnail,
+            }}
+            loading={lodaingImage}
+            loadingSize="large"
+          />
+          <View style={styles.domainView}>
+            <Text style={styles.domainText}>{url}</Text>
+          </View>
+          <TitleDescription
+            title={title}
+            description={desc}
+            loading={loadingSiteTitleAndDesc}
+            loaderConfig={{titleRows: 2, descRows: 3}}
+          />
+          <View style={styles.rowstyle}>
+            <View style={styles.coloumnStyle}>
+              <TitleDescription
+                title="CMS"
+                description={cms}
+                loading={isCMSLoading}
+                loaderConfig={{titleRows: 1, descRows: 1}}
+              />
+            </View>
+            <View style={styles.coloumnStyle}>
+              <TitleDescription
+                title="Location"
+                description={location.region + ', ' + location.country}
+                loaderConfig={{titleRows: 1, descRows: 1}}
+                loading={isLocationLoading}
+              />
+            </View>
+          </View>
+          <View style={styles.rowstyle}>
+            <View style={styles.coloumnStyle}>
+              <TitleDescription
+                title="Expiry"
+                description={domainExp}
+                loading={isDomainExpLoading}
+                loaderConfig={{titleRows: 1, descRows: 1}}
+              />
+            </View>
+            <View style={styles.coloumnStyle} />
+          </View>
+        </View>
+      </ScrollView>
     </View>
   );
 }
