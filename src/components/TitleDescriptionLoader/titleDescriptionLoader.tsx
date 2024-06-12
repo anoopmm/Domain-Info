@@ -1,7 +1,7 @@
 import React, {useEffect, useRef, useMemo} from 'react';
 import {Animated, ViewStyle, StyleProp, View} from 'react-native';
-import makeStyles from './titleDescriptionLoader.style';
 import {useTheme} from '@react-navigation/native';
+import makeStyles from './titleDescriptionLoader.style';
 interface PulsatingViewProps {
   style?: StyleProp<ViewStyle>;
   titleRows?: number;

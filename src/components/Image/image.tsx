@@ -6,8 +6,8 @@ import {
   ImageStyle,
   StyleProp,
 } from 'react-native';
-import styles from './image.style';
 import {useTheme} from '@react-navigation/native';
+import styles from './image.style';
 interface ImageWithLoadingProps {
   source: {uri: string} | number;
   style?: StyleProp<ImageStyle>;

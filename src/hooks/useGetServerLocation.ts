@@ -3,6 +3,7 @@ type LocationDetails = {
   country: string;
   region: string;
 };
+import keys from '../constants/apiKeys';
 const useGetServerLocation = (url: string): [LocationDetails, boolean] => {
   const [serverLocation, setServerLocation] = useState<object>({});
   const [loading, setLoading] = useState<boolean>(false);
@@ -10,17 +11,13 @@ const useGetServerLocation = (url: string): [LocationDetails, boolean] => {
     const getServerLocation = async () => {
       setLoading(true);
       try {
-        console.log('data', url);
         const response = await fetch(
-          `https://geo.ipify.org/api/v2/country?apiKey=at_wl8vImvvBDi9Ql1OW0H5C4wNiuNm9&domain=` +
-            url,
+          `https://geo.ipify.org/api/v2/country?apiKey=${keys.ipify}=${url}`,
         );
         const data = await response.json();
-        console.log('data', data);
         setServerLocation(data?.location || {});
         setLoading(false);
       } catch (error) {
-        console.error('Error fetching server location:', error);
         setServerLocation({country: 'Unknown', region: 'Unknown'});
         setLoading(false);
       }

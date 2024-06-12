@@ -1,13 +1,12 @@
 import React, {useContext, useMemo} from 'react';
-import {View, Text, Switch} from 'react-native';
-import {StackNavigationProp} from '@react-navigation/stack';
-import {RootStackParamList} from '../../router';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import {AppContext} from '../../theme/appContext';
+import {View, Text, Switch, TouchableOpacity} from 'react-native';
 import {useTheme} from '@react-navigation/native';
+import {StackNavigationProp} from '@react-navigation/stack';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import {RootStackParamList} from '../../router';
+import {AppContext} from '../../theme/appContext';
 import makeStyles from './settings.styles';
 import Header from '../../components/Header/header';
-import {TouchableOpacity} from 'react-native-gesture-handler';
 import colorPatterns from '../../constants/theme';
 type HomeScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
