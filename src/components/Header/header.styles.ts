@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-const styles = StyleSheet.create({
+const makeStyles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -15,4 +15,4 @@ const styles = StyleSheet.create({
     zIndex: 1000,
   },
 });
-export default styles;
+export default makeStyles;

@@ -1,11 +1,18 @@
 import React, {useMemo, useState} from 'react';
-import {NavigationContainer} from '@react-navigation/native';
+import {NavigationContainer, Theme} from '@react-navigation/native';
+import {StatusBar} from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
 import HomeScreen from './screens/Home/home';
 import DomainDetailsScreen from './screens/DomainDetails/domainDetails';
 import SettingsScreen from './screens/Settings/settings';
-import DarkTheme from './theme/darkTheme';
-import LightTheme from './theme/lightTheme';
+import darkThemePurple from './theme/darkThemePurple';
+import darkThemeRed from './theme/darkThemeRed';
+import darkThemeTeal from './theme/darkThemeTeal';
+import darkThemeIndigo from './theme/darkThemeIndigo';
+import lightThemeIndigo from './theme/lightThemeIndigo';
+import lightThemePurple from './theme/lightThemePurple';
+import lightThemeRed from './theme/lightThemeRed';
+import lightThemeTeal from './theme/lightThemeTeal';
 import {AppContext} from './theme/appContext';
 
 export type RootStackParamList = {
@@ -49,9 +56,42 @@ export default function Router() {
   const appContext = useMemo(() => {
     return {isDarkTheme, setIsDarkTheme, colorPattern, setColorPattern};
   }, [isDarkTheme, colorPattern]);
-
+  const getTheme = (): Theme => {
+    if (isDarkTheme) {
+      switch (colorPattern) {
+        case 'purple':
+          return darkThemePurple;
+        case 'red':
+          return darkThemeRed;
+        case 'teal':
+          return darkThemeTeal;
+        case 'indigo':
+          return darkThemeIndigo;
+        default:
+          return darkThemePurple;
+      }
+    } else {
+      switch (colorPattern) {
+        case 'purple':
+          return lightThemePurple;
+        case 'red':
+          return lightThemeRed;
+        case 'teal':
+          return lightThemeTeal;
+        case 'indigo':
+          return lightThemeIndigo;
+        default:
+          return lightThemePurple;
+      }
+    }
+  };
+  let theme = getTheme();
   return (
-    <NavigationContainer theme={isDarkTheme ? DarkTheme : LightTheme}>
+    <NavigationContainer theme={theme}>
+      <StatusBar
+        backgroundColor={theme.colors.background}
+        barStyle={isDarkTheme ? 'light-content' : 'dark-content'}
+      />
       <AppContext.Provider value={appContext}>
         <HomeStackScreen />
       </AppContext.Provider>

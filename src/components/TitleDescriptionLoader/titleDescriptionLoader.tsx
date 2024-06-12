@@ -1,7 +1,6 @@
-import React, {useEffect, useRef, useContext, useMemo} from 'react';
+import React, {useEffect, useRef, useMemo} from 'react';
 import {Animated, ViewStyle, StyleProp, View} from 'react-native';
 import makeStyles from './titleDescriptionLoader.style';
-import {AppContext} from '../../theme/appContext';
 import {useTheme} from '@react-navigation/native';
 interface PulsatingViewProps {
   style?: StyleProp<ViewStyle>;
@@ -17,37 +16,31 @@ const TitleDescriptionLoader: React.FC<PulsatingViewProps> = ({
   const scaleAnim = useRef(new Animated.Value(1)).current;
   const opacityAnim = useRef(new Animated.Value(1)).current;
   const {colors} = useTheme();
-  const {isDarkTheme, setIsDarkTheme, setColorPattern, colorPattern} =
-    useContext(AppContext);
-  console.log(colorPattern, colors[colorPattern]);
-  const styles = useMemo(
-    () => makeStyles(colors[colorPattern]),
-    [colors[colorPattern]],
-  );
+  const styles = useMemo(() => makeStyles(colors), [colors]);
   useEffect(() => {
     const pulse = Animated.loop(
       Animated.sequence([
         Animated.parallel([
           Animated.timing(scaleAnim, {
-            toValue: 1.1,
-            duration: 700,
+            toValue: 1.05,
+            duration: 900,
             useNativeDriver: true,
           }),
           Animated.timing(opacityAnim, {
             toValue: 0.5,
-            duration: 700,
+            duration: 900,
             useNativeDriver: true,
           }),
         ]),
         Animated.parallel([
           Animated.timing(scaleAnim, {
             toValue: 1,
-            duration: 700,
+            duration: 900,
             useNativeDriver: true,
           }),
           Animated.timing(opacityAnim, {
             toValue: 1,
-            duration: 700,
+            duration: 900,
             useNativeDriver: true,
           }),
         ]),

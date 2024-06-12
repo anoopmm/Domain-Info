@@ -20,6 +20,7 @@ const useGetDomainExpiration = (url: string): [string, boolean] => {
           requestOptions,
         );
         const data = await response.json();
+        console.log('EXP DATA', data);
         setExpirationDate(data?.result?.expiration_date || 'Unknown');
         setLoading(false);
       } catch (error) {

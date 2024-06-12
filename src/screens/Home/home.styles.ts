@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-const styles = (colors: any) =>
+const makeStyles = (colors: any) =>
   StyleSheet.create({
     container: {
       flex: 1,
@@ -14,18 +14,21 @@ const styles = (colors: any) =>
       fontSize: 18,
       marginBottom: 8,
       color: colors.textPrimary,
+      fontFamily: 'Montserrat-Medium',
     },
     input: {
       height: 40,
-      borderColor: '#fff',
+      borderColor: colors.border,
       borderWidth: 1,
       paddingHorizontal: 8,
       marginBottom: 16,
-      backgroundColor: colors.card,
+      backgroundColor: colors.backgroundSecondary,
       borderRadius: 8,
+      fontFamily: 'Montserrat-Medium',
+      color: colors.textPrimary,
     },
     validationMessage: {
-      color: 'red',
+      color: colors.notification,
       marginBottom: 8,
     },
     button: {
@@ -38,6 +41,7 @@ const styles = (colors: any) =>
     buttonText: {
       color: colors.white,
       fontSize: 20,
+      fontFamily: 'Montserrat-Medium',
     },
   });
-export default styles;
+export default makeStyles;

@@ -1,8 +1,7 @@
-import React, {useMemo, useContext} from 'react';
+import React, {useMemo} from 'react';
 import {View, Text, ViewStyle, TextStyle} from 'react-native';
 import makeStyles from './titleAndDescription.style';
 import TitleDescriptionLoader from '../TitleDescriptionLoader/titleDescriptionLoader';
-import {AppContext} from '../../theme/appContext';
 import {useTheme} from '@react-navigation/native';
 interface TitleDescriptionProps {
   title: string;
@@ -27,13 +26,7 @@ const TitleDescription: React.FC<TitleDescriptionProps> = ({
   loaderConfig,
 }) => {
   const {colors} = useTheme();
-  const {isDarkTheme, setIsDarkTheme, setColorPattern, colorPattern} =
-    useContext(AppContext);
-  console.log(colorPattern, colors[colorPattern]);
-  const styles = useMemo(
-    () => makeStyles(colors[colorPattern]),
-    [colors[colorPattern]],
-  );
+  const styles = useMemo(() => makeStyles(colors), [colors]);
   if (!loading) {
     return (
       <View style={[styles.container, containerStyle]}>

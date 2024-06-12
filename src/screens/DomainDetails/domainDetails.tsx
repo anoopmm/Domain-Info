@@ -1,5 +1,5 @@
-import React, {useContext, useMemo} from 'react';
-import {View, Text, Image} from 'react-native';
+import React, {useMemo} from 'react';
+import {View, Text} from 'react-native';
 import {RouteProp} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import makeStyles from './domainDetails.style';
@@ -11,18 +11,16 @@ import useGetServerLocation from '../../hooks/useGetServerLocation';
 import ImageWithLoading from '../../components/Image/image';
 import Header from '../../components/Header/header';
 import TitleDescription from '../../components/TitleAndDescription/titleAndDescription';
-import {AppContext} from '../../theme/appContext';
 import {useTheme} from '@react-navigation/native';
 import Share from 'react-native-share';
 import * as RNFS from '@dr.pogodin/react-native-fs';
 import FloatingButton from '../../components/FloatingButton/floatingButton';
 type DetailsScreenProps = {
-  route: RouteProp<StackParamList, 'Details'>;
-  navigation: StackNavigationProp<StackParamList, 'Details'>;
+  route: RouteProp<StackParamList, 'DomainDetails'>;
+  navigation: StackNavigationProp<StackParamList, 'DomainDetails'>;
 };
 type StackParamList = {
-  Details: {url: string};
-  // other screens if any
+  DomainDetails: {url: string};
 };
 export default function DetailsScreen({route, navigation}: DetailsScreenProps) {
   const {url} = route.params;
@@ -32,13 +30,7 @@ export default function DetailsScreen({route, navigation}: DetailsScreenProps) {
   const [domainExp, isDomainExpLoading] = useGetDomainExpiration(url);
   const [location, isLocationLoading] = useGetServerLocation(url);
   const {colors} = useTheme();
-  const {isDarkTheme, setIsDarkTheme, setColorPattern, colorPattern} =
-    useContext(AppContext);
-  console.log(colorPattern, colors[colorPattern]);
-  const styles = useMemo(
-    () => makeStyles(colors[colorPattern]),
-    [colors[colorPattern]],
-  );
+  const styles = useMemo(() => makeStyles(colors), [colors]);
   const shareContent = async () => {
     let imageUrl = thumbnail;
     // let imageUrl =
@@ -71,16 +63,14 @@ export default function DetailsScreen({route, navigation}: DetailsScreenProps) {
   return (
     <View style={styles.container}>
       <Header navigation={navigation} showBackButton={true} />
-      <View style={styles.container}>
+      <View style={styles.detailsContainer}>
         <ImageWithLoading
           source={{
             uri: thumbnail,
             // uri: 'https://fastly.picsum.photos/id/340/200/300.jpg?hmac=JIWzQMzudGQJ5ZI2GIRg4NTwRI4fwA8k8xcnMvEmwcQ',
           }}
-          // style={styles.image}
           loading={lodaingImage}
           loadingSize="large"
-          loadingColor="#00ff00" // Green color
         />
         <View style={styles.domainView}>
           <Text style={styles.domainText}>{url}</Text>
@@ -91,8 +81,8 @@ export default function DetailsScreen({route, navigation}: DetailsScreenProps) {
           loading={loadingSiteTitleAndDesc}
           loaderConfig={{titleRows: 2, descRows: 3}}
         />
-        <View style={{flexDirection: 'row'}}>
-          <View style={{flex: 1}}>
+        <View style={styles.rowstyle}>
+          <View style={styles.coloumnStyle}>
             <TitleDescription
               title="CMS"
               description={cms}
@@ -100,7 +90,7 @@ export default function DetailsScreen({route, navigation}: DetailsScreenProps) {
               loaderConfig={{titleRows: 1, descRows: 1}}
             />
           </View>
-          <View style={{flex: 1}}>
+          <View style={styles.coloumnStyle}>
             <TitleDescription
               title="Location"
               description={location.region + ', ' + location.country}
@@ -109,8 +99,8 @@ export default function DetailsScreen({route, navigation}: DetailsScreenProps) {
             />
           </View>
         </View>
-        <View style={{flexDirection: 'row'}}>
-          <View style={{flex: 1}}>
+        <View style={styles.rowstyle}>
+          <View style={styles.coloumnStyle}>
             <TitleDescription
               title="Expiry"
               description={domainExp}
@@ -118,7 +108,7 @@ export default function DetailsScreen({route, navigation}: DetailsScreenProps) {
               loaderConfig={{titleRows: 1, descRows: 1}}
             />
           </View>
-          <View style={{flex: 1}} />
+          <View style={styles.coloumnStyle} />
         </View>
       </View>
       <FloatingButton onPress={shareContent} />

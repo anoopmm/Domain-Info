@@ -9,7 +9,7 @@ const useGetTitleAndDescription = (url: string): [string, string, boolean] => {
     const getTitleAndDescription = async () => {
       setLoading(true);
       try {
-        const response = await fetch('http://' + url);
+        const response = await fetch('https://' + url);
         const html = await response.text();
 
         // Extract title from HTML
