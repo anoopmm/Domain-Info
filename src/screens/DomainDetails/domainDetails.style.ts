@@ -1,10 +1,11 @@
-import {StyleSheet} from 'react-native';
-
+import {StyleSheet, Dimensions} from 'react-native';
+const height = Dimensions.get('window').height;
 const makeStyles = (colors: any) =>
   StyleSheet.create({
     container: {
       flex: 1,
       backgroundColor: colors.background,
+      height: height,
     },
     detailsContainer: {
       flex: 1,

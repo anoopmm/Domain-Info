@@ -27,7 +27,6 @@ const useGetTitleAndDescription = (url: string): [string, string, boolean] => {
         }
         setLoading(false);
       } catch (error) {
-        console.error('Error fetching title and description:', error);
         setTitle('Unknown');
         setDescription('Unknown');
         setLoading(false);

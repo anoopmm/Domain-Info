@@ -1,10 +1,10 @@
 import React, {useState, useMemo} from 'react';
-import {View, Text, TextInput} from 'react-native';
+import {View, Text, TextInput, TouchableOpacity} from 'react-native';
+import {useTheme} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {RootStackParamList} from '../../router';
 import makeStyles from './home.styles';
-import {TouchableOpacity} from 'react-native-gesture-handler';
-import {useTheme} from '@react-navigation/native';
+
 import Header from '../../components/Header/header';
 type HomeScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Home'>;
 

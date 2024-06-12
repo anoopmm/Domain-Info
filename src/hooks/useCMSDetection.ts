@@ -1,4 +1,5 @@
 import {useEffect, useState} from 'react';
+import keys from '../constants/apiKeys';
 
 const useFetchCMS = (url: string): [string, boolean] => {
   const [cms, setCMS] = useState<string>('');
@@ -7,15 +8,11 @@ const useFetchCMS = (url: string): [string, boolean] => {
   useEffect(() => {
     const fetchCMS = async () => {
       try {
-        const apiKey =
-          'w3889ag43xknyknh6bujk0nz0mo5ouxbiohgo7wvtv9insmay7ocab2k30pffdr7jrpfl2';
-        const apiUrl =
-          'https://whatcms.org/API/Tech?key=' + apiKey + '&url=' + url;
+        // const apiKey =
+        //   'w3889ag43xknyknh6bujk0nz0mo5ouxbiohgo7wvtv9insmay7ocab2k30pffdr7jrpfl2';
+        const apiUrl = `https://whatcms.org/API/Tech?key=${keys.whatcms}&url=${url}`;
         const response = await fetch(apiUrl);
-        console.log('response', response);
         const data = await response.json();
-        console.log('response', JSON.stringify(data));
-
         if (data && data.results) {
           let cmsValue = 'Unknown';
           data.results.forEach((element: any) => {
@@ -27,7 +24,6 @@ const useFetchCMS = (url: string): [string, boolean] => {
           setCMS(cmsValue);
         }
       } catch (error) {
-        console.error('Error getting website thumbnail:', error);
         setCMS('Unknown');
       } finally {
         setIsLoading(false);

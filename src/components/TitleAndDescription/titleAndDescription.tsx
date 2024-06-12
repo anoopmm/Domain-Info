@@ -1,8 +1,8 @@
 import React, {useMemo} from 'react';
 import {View, Text, ViewStyle, TextStyle} from 'react-native';
+import {useTheme} from '@react-navigation/native';
 import makeStyles from './titleAndDescription.style';
 import TitleDescriptionLoader from '../TitleDescriptionLoader/titleDescriptionLoader';
-import {useTheme} from '@react-navigation/native';
 interface TitleDescriptionProps {
   title: string;
   description: string;
