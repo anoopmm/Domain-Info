@@ -1,5 +1,5 @@
 import {StyleSheet, ViewStyle, TextStyle} from 'react-native';
-const styles = (colors: any) =>
+const makeStyles = (colors: any) =>
   StyleSheet.create({
     container: {
       backgroundColor: colors.backgroundSecondary,
@@ -11,18 +11,19 @@ const styles = (colors: any) =>
       elevation: 5,
       borderRadius: 10,
       padding: 10,
-      borderWidth: 1,
+      //   borderWidth: 1,
       borderColor: colors.border,
     } as ViewStyle,
     title: {
       fontSize: 20,
-      fontWeight: 'bold',
       marginBottom: 5,
       color: colors.textPrimary,
+      fontFamily: 'Montserrat-Medium',
     } as TextStyle,
     description: {
       fontSize: 16,
       color: colors.textSecondary,
+      fontFamily: 'Montserrat-Medium',
     } as TextStyle,
   });
-export default styles;
+export default makeStyles;

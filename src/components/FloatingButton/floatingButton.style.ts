@@ -1,5 +1,5 @@
-import {StyleSheet, ViewStyle, TextStyle} from 'react-native';
-const styles = (colors: any) =>
+import {StyleSheet} from 'react-native';
+const makeStyles = (colors: any) =>
   StyleSheet.create({
     button: {
       position: 'absolute',
@@ -18,4 +18,4 @@ const styles = (colors: any) =>
       elevation: 5,
     },
   });
-export default styles;
+export default makeStyles;

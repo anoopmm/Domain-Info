@@ -1,5 +1,5 @@
-import {StyleSheet, ViewStyle, TextStyle} from 'react-native';
-const styles = (colors: any) =>
+import {StyleSheet} from 'react-native';
+const makeStyles = (colors: any) =>
   StyleSheet.create({
     pulsating: {
       // justifyContent: 'center',
@@ -13,7 +13,7 @@ const styles = (colors: any) =>
       elevation: 5,
       borderRadius: 10,
       padding: 10,
-      borderWidth: 1,
+      //   borderWidth: 1,
       borderColor: colors.border,
     },
     title: {
@@ -29,4 +29,4 @@ const styles = (colors: any) =>
       borderRadius: 4,
     },
   });
-export default styles;
+export default makeStyles;

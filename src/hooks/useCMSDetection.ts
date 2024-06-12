@@ -17,7 +17,7 @@ const useFetchCMS = (url: string): [string, boolean] => {
         console.log('response', JSON.stringify(data));
 
         if (data && data.results) {
-          let cmsValue = '';
+          let cmsValue = 'Unknown';
           data.results.forEach((element: any) => {
             if (element.categories.indexOf('CMS') > -1) {
               cmsValue = element.name;
@@ -28,7 +28,7 @@ const useFetchCMS = (url: string): [string, boolean] => {
         }
       } catch (error) {
         console.error('Error getting website thumbnail:', error);
-        setCMS('');
+        setCMS('Unknown');
       } finally {
         setIsLoading(false);
       }

@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
 
-const styles = (colors: any) =>
+const makeStyles = (colors: any) =>
   StyleSheet.create({
     container: {
       flex: 1,
@@ -10,10 +10,6 @@ const styles = (colors: any) =>
     contentContainer: {
       flex: 1,
       paddingTop: 50,
-    },
-    label: {
-      fontSize: 18,
-      marginBottom: 8,
     },
     switchContainer: {
       justifyContent: 'space-between',
@@ -32,6 +28,21 @@ const styles = (colors: any) =>
     labelText: {
       fontSize: 18,
       color: colors.textPrimary,
+      fontFamily: 'Montserrat-Medium',
+    },
+    colorButton: {
+      width: 40,
+      height: 40,
+      borderRadius: 20,
+      justifyContent: 'center',
+      alignItems: 'center',
+      margin: 8,
+    },
+    switchLabelContainer: {
+      justifyContent: 'center',
+    },
+    colorButtonContainer: {
+      flexDirection: 'row',
     },
   });
-export default styles;
+export default makeStyles;

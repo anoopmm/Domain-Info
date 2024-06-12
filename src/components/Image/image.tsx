@@ -7,6 +7,7 @@ import {
   StyleProp,
 } from 'react-native';
 import styles from './image.style';
+import {useTheme} from '@react-navigation/native';
 interface ImageWithLoadingProps {
   source: {uri: string} | number;
   style?: StyleProp<ImageStyle>;
@@ -22,7 +23,7 @@ const ImageWithLoading: React.FC<ImageWithLoadingProps> = ({
   loading,
 }) => {
   const [imageLoading, setLoading] = useState(true);
-
+  const {colors} = useTheme();
   return (
     <View style={[styles.container, style]}>
       {(loading || imageLoading) && (
@@ -30,7 +31,7 @@ const ImageWithLoading: React.FC<ImageWithLoadingProps> = ({
           <ActivityIndicator
             style={styles.loading}
             size={loadingSize}
-            color="#ccabec"
+            color={colors.primary}
           />
         </View>
       )}
