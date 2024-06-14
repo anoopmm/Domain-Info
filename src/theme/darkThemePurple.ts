@@ -1,14 +1,15 @@
-const DarkTheme = {
+import {ExtendedTheme} from '@react-navigation/native';
+const DarkTheme: ExtendedTheme = {
   dark: true,
   colors: {
-    primary: '#9333ea',
-    background: '#3A2A46',
-    backgroundSecondary: '#4C4452',
+    primary: '#4002c5',
+    background: '#131018',
+    backgroundSecondary: '#1f1b28',
     card: '#FFE9FF',
     textPrimary: '#FFF',
     white: '#fff',
-    textSecondary: '#9ca3af',
-    border: '#B2A8B8',
+    textSecondary: '#a59abc',
+    border: '#423956',
     notification: 'rgb(255, 69, 58)',
     text: '#fff',
   },

@@ -1,6 +1,14 @@
-import {StyleSheet} from 'react-native';
-const makeStyles = (colors: any) =>
-  StyleSheet.create({
+import {StyleSheet, ViewStyle} from 'react-native';
+import {ExtendedTheme} from '@react-navigation/native';
+
+interface Styles {
+  button: ViewStyle;
+}
+
+type Colors = ExtendedTheme['colors'];
+
+const makeStyles = (colors: Colors): Styles =>
+  StyleSheet.create<Styles>({
     button: {
       position: 'absolute',
       width: 60,

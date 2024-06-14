@@ -1,4 +1,4 @@
-//need to move all those values to env vartiables
+//need to move all those values to env variables
 const keys = {
   ipify: 'at_wl8vImvvBDi9Ql1OW0H5C4wNiuNm9&domain',
   whatcms:

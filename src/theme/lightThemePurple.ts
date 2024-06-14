@@ -1,8 +1,9 @@
-const LightTheme = {
+import {ExtendedTheme} from '@react-navigation/native';
+const LightTheme: ExtendedTheme = {
   dark: false,
   colors: {
     primary: '#9333ea',
-    background: '#d9c6ea',
+    background: '#fff',
     backgroundSecondary: '#efecff',
     card: '#FFE9FF',
     textPrimary: '#000',
