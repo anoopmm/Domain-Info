@@ -5,7 +5,10 @@ type LocationDetails = {
 };
 import keys from '../constants/apiKeys';
 const useGetServerLocation = (url: string): [LocationDetails, boolean] => {
-  const [serverLocation, setServerLocation] = useState<object>({});
+  const [serverLocation, setServerLocation] = useState<LocationDetails>({
+    country: 'Unknown',
+    region: 'Unknown',
+  });
   const [loading, setLoading] = useState<boolean>(false);
   useEffect(() => {
     const getServerLocation = async () => {
@@ -15,7 +18,9 @@ const useGetServerLocation = (url: string): [LocationDetails, boolean] => {
           `https://geo.ipify.org/api/v2/country?apiKey=${keys.ipify}=${url}`,
         );
         const data = await response.json();
-        setServerLocation(data?.location || {});
+        setServerLocation(
+          data?.location || {country: 'Unknown', region: 'Unknown'},
+        );
         setLoading(false);
       } catch (error) {
         setServerLocation({country: 'Unknown', region: 'Unknown'});

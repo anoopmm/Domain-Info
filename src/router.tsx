@@ -3,6 +3,7 @@ import {
   NavigationContainer,
   DefaultTheme,
   DarkTheme,
+  ExtendedTheme,
 } from '@react-navigation/native';
 import {StatusBar} from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
@@ -63,8 +64,10 @@ export default function Router() {
   // Function to get the current theme based on state
   const getTheme = (): typeof DefaultTheme | typeof DarkTheme => {
     return isDarkTheme
-      ? themes.dark[colorAccent as keyof typeof themes.dark]
-      : themes.light[colorAccent as keyof typeof themes.light];
+      ? (themes.dark[colorAccent as keyof typeof themes.dark] as ExtendedTheme)
+      : (themes.light[
+          colorAccent as keyof typeof themes.light
+        ] as ExtendedTheme);
   };
 
   // Retrieve the current theme object

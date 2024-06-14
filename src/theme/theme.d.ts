@@ -5,14 +5,14 @@ declare module '@react-navigation/native' {
   export type ExtendedTheme = {
     dark: boolean;
     colors: {
-      primary?: string;
+      primary: string;
       secondary?: string;
       danger?: string;
-      background?: string;
-      card?: string;
-      text?: string;
-      border?: string;
-      notification?: string;
+      background: string;
+      card: string;
+      text: string;
+      border: string;
+      notification: string;
       textPrimary?: string;
       textSecondary?: string;
       backgroundSecondary?: string;

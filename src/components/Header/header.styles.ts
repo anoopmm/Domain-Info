@@ -4,6 +4,7 @@ import {ExtendedTheme} from '@react-navigation/native';
 interface Styles {
   titleContainer: ViewStyle;
   title: TextStyle;
+  headerStyle: ViewStyle;
 }
 
 type Colors = ExtendedTheme['colors'];
