@@ -35,7 +35,7 @@ const makeStyles = (colors: Colors): Styles =>
       borderColor: colors.border,
       borderWidth: 1,
       paddingHorizontal: 8,
-      marginBottom: 16,
+      marginBottom: 8,
       backgroundColor: colors.backgroundSecondary,
       borderRadius: 8,
       fontFamily: 'Montserrat-SemiBold',
@@ -44,7 +44,6 @@ const makeStyles = (colors: Colors): Styles =>
     },
     validationMessage: {
       color: colors.notification,
-      marginBottom: 8,
     },
     button: {
       backgroundColor: colors.primary,
@@ -52,6 +51,7 @@ const makeStyles = (colors: Colors): Styles =>
       justifyContent: 'center',
       alignItems: 'center',
       borderRadius: 8,
+      marginTop: 16,
     },
     buttonText: {
       color: '#fff',

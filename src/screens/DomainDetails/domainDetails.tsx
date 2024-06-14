@@ -1,5 +1,5 @@
 import React, {useMemo} from 'react';
-import {View, ScrollView, Alert} from 'react-native';
+import {View, ScrollView, Alert, Text} from 'react-native';
 import {RouteProp, useTheme} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import Share from 'react-native-share';
@@ -69,6 +69,7 @@ const DetailsScreen: React.FC<DetailsScreenProps> = ({route, navigation}) => {
         navigation={navigation}
         showRightButton
         showLeftButton
+        title="Domain Details"
         rightAction={() => navigation.navigate('Settings')}
       />
       <ScrollView style={styles.scrollContainer}>
@@ -77,6 +78,7 @@ const DetailsScreen: React.FC<DetailsScreenProps> = ({route, navigation}) => {
           loading={isThumbnailImageLoading}
         />
         <View style={styles.detailsContainer}>
+          <Text style={styles.domainName}>{url}</Text>
           <TitleAndDescription
             title={title}
             desc={desc}

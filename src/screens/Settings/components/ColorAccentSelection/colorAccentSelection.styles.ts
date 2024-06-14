@@ -17,7 +17,7 @@ const makeStyles = (colors: Colors): Styles =>
       flexDirection: 'row',
       borderBottomWidth: 1,
       borderBottomColor: colors.border,
-      marginVertical: 10,
+      paddingVertical: 10,
     },
     labelText: {
       fontSize: 16,

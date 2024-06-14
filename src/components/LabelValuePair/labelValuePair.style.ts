@@ -31,7 +31,7 @@ const makeStyles = (colors: Colors): Styles =>
       fontSize: 16,
       marginBottom: 5,
       color: colors.textSecondary,
-      fontFamily: 'Montserrat-Regular',
+      fontFamily: 'Montserrat-Medium',
     },
     description: {
       fontSize: 16,

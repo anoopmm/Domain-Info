@@ -1,10 +1,11 @@
-import {StyleSheet, Dimensions, ViewStyle} from 'react-native';
+import {StyleSheet, Dimensions, ViewStyle, TextStyle} from 'react-native';
 import {ExtendedTheme} from '@react-navigation/native';
 
 interface Styles {
   container: ViewStyle;
   scrollContainer: ViewStyle;
   detailsContainer: ViewStyle;
+  domainName: TextStyle;
 }
 
 type Colors = ExtendedTheme['colors'];
@@ -28,6 +29,11 @@ const makeStyles = (colors: Colors): Styles =>
       flex: 1,
       flexDirection: 'column',
       padding: 16,
+    },
+    domainName: {
+      fontSize: 32,
+      fontFamily: 'Montserrat-Medium',
+      color: colors.textSecondary,
     },
   });
 

@@ -19,11 +19,11 @@ const makeStyles = (colors: Colors): Styles =>
       alignItems: 'center',
       bottom: 20,
       right: 20,
-      shadowColor: '#000',
+      shadowColor: colors.textPrimary,
       shadowOffset: {width: 0, height: 2},
       shadowOpacity: 0.3,
       shadowRadius: 3,
-      elevation: 5,
+      elevation: 4,
       zIndex: 100,
     },
   });
