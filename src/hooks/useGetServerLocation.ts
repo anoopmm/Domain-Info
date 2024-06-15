@@ -15,7 +15,7 @@ const useGetServerLocation = (url: string): [LocationDetails, boolean] => {
       setLoading(true);
       try {
         const response = await fetch(
-          `https://geo.ipify.org/api/v2/country?apiKey=${keys.ipify}=${url}`,
+          `https://geo.ipify.org/api/v2/country?apiKey=${keys.ipify}&domain=${url}`,
         );
         const data = await response.json();
         setServerLocation(
