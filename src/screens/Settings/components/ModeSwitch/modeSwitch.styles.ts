@@ -1,37 +1,31 @@
 import {StyleSheet, ViewStyle, TextStyle} from 'react-native';
 import {ExtendedTheme} from '@react-navigation/native';
 
-type Styles = {
-  container: ViewStyle;
-  contentContainer: ViewStyle;
+interface Styles {
   switchContainer: ViewStyle;
-  sectionTitle: TextStyle;
-};
+  labelText: TextStyle;
+  switchLabelContainer: ViewStyle;
+}
 
 type Colors = ExtendedTheme['colors'];
 
 const makeStyles = (colors: Colors): Styles =>
   StyleSheet.create<Styles>({
-    container: {
-      flex: 1,
-      backgroundColor: colors.background,
-      paddingHorizontal: 16,
-    },
-    contentContainer: {
-      flex: 1,
-      paddingTop: 16,
-    },
     switchContainer: {
       justifyContent: 'space-between',
       flexDirection: 'row',
+      alignItems: 'center',
       height: 60,
-      borderBottomWidth: 1,
+      borderBottomWidth: 0.4,
       borderBottomColor: colors.border,
     },
-    sectionTitle: {
-      fontFamily: 'Montserrat-SemiBold',
-      color: colors.textPrimary,
-      fontSize: 20,
+    labelText: {
+      fontSize: 16,
+      color: colors.text,
+      fontFamily: 'Montserrat-Medium',
+    },
+    switchLabelContainer: {
+      justifyContent: 'center',
     },
   });
 

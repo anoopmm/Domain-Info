@@ -1,6 +1,14 @@
-import {StyleSheet} from 'react-native';
-const makeStyles = (colors: any) =>
-  StyleSheet.create({
+import {StyleSheet, ViewStyle} from 'react-native';
+import {ExtendedTheme} from '@react-navigation/native';
+
+interface Styles {
+  button: ViewStyle;
+}
+
+type Colors = ExtendedTheme['colors'];
+
+const makeStyles = (colors: Colors): Styles =>
+  StyleSheet.create<Styles>({
     button: {
       position: 'absolute',
       width: 60,
@@ -11,11 +19,11 @@ const makeStyles = (colors: any) =>
       alignItems: 'center',
       bottom: 20,
       right: 20,
-      shadowColor: '#000',
+      shadowColor: colors.textPrimary,
       shadowOffset: {width: 0, height: 2},
       shadowOpacity: 0.3,
       shadowRadius: 3,
-      elevation: 5,
+      elevation: 4,
       zIndex: 100,
     },
   });

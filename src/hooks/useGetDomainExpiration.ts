@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react';
 import keys from '../constants/apiKeys';
-
+import moment from 'moment';
 const useGetDomainExpiration = (url: string): [string, boolean] => {
   const [expirationDate, setExpirationDate] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
@@ -20,7 +20,13 @@ const useGetDomainExpiration = (url: string): [string, boolean] => {
           requestOptions,
         );
         const data = await response.json();
-        setExpirationDate(data?.result?.expiration_date || 'Unknown');
+        let expirationDateFormated: string = 'Unknown';
+        if (data?.result?.expiration_date) {
+          expirationDateFormated = moment(data.result.expiration_date).format(
+            'LLL',
+          );
+        }
+        setExpirationDate(expirationDateFormated);
         setLoading(false);
       } catch (error) {
         setExpirationDate('Unknown');

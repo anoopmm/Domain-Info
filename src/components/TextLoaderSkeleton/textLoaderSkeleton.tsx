@@ -1,24 +1,28 @@
 import React, {useEffect, useRef, useMemo} from 'react';
-import {Animated, ViewStyle, StyleProp, View} from 'react-native';
+import {Animated, ViewStyle, StyleProp} from 'react-native';
 import {useTheme} from '@react-navigation/native';
-import makeStyles from './titleDescriptionLoader.style';
+import makeStyles from './textLoaderSkeleton.style';
+
 interface PulsatingViewProps {
   style?: StyleProp<ViewStyle>;
   titleRows?: number;
   descRows?: number;
 }
 
-const TitleDescriptionLoader: React.FC<PulsatingViewProps> = ({
-  style,
-  titleRows,
-  descRows,
-}) => {
+const TextLoaderSkeleton: React.FC<PulsatingViewProps> = ({style}) => {
+  // Animation values for scaling and opacity
   const scaleAnim = useRef(new Animated.Value(1)).current;
-  const opacityAnim = useRef(new Animated.Value(1)).current;
+  const opacityAnim = useRef(new Animated.Value(0.3)).current;
+
+  // Fetching colors from the theme
   const {colors} = useTheme();
+
+  // Memoizing the styles to avoid recalculating on each render
   const styles = useMemo(() => makeStyles(colors), [colors]);
+
   useEffect(() => {
-    const pulse = Animated.loop(
+    // Defining the pulsating animation
+    const pulseAnimation = Animated.loop(
       Animated.sequence([
         Animated.parallel([
           Animated.timing(scaleAnim, {
@@ -27,7 +31,7 @@ const TitleDescriptionLoader: React.FC<PulsatingViewProps> = ({
             useNativeDriver: true,
           }),
           Animated.timing(opacityAnim, {
-            toValue: 0.5,
+            toValue: 0.1,
             duration: 900,
             useNativeDriver: true,
           }),
@@ -39,38 +43,19 @@ const TitleDescriptionLoader: React.FC<PulsatingViewProps> = ({
             useNativeDriver: true,
           }),
           Animated.timing(opacityAnim, {
-            toValue: 1,
+            toValue: 0.3,
             duration: 900,
             useNativeDriver: true,
           }),
         ]),
       ]),
     );
-    pulse.start();
-    return () => pulse.stop();
+    pulseAnimation.start();
+    return () => {
+      pulseAnimation.stop();
+    };
   }, [scaleAnim, opacityAnim]);
-  const loadTitleRows = () => {
-    let rows = [];
-    if (titleRows) {
-      for (let i = 0; i < titleRows; i++) {
-        rows.push(<View style={styles.title} />);
-      }
-      return rows;
-    } else {
-      return <View style={styles.title} />;
-    }
-  };
-  const loadDecRows = () => {
-    let rows = [];
-    if (descRows) {
-      for (let i = 0; i < descRows; i++) {
-        rows.push(<View style={styles.description} />);
-      }
-      return rows;
-    } else {
-      return <View style={styles.description} />;
-    }
-  };
+
   return (
     <Animated.View
       style={[
@@ -80,11 +65,9 @@ const TitleDescriptionLoader: React.FC<PulsatingViewProps> = ({
           opacity: opacityAnim,
         },
         style,
-      ]}>
-      {loadTitleRows()}
-      {loadDecRows()}
-    </Animated.View>
+      ]}
+    />
   );
 };
 
-export default TitleDescriptionLoader;
+export default TextLoaderSkeleton;

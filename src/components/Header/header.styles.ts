@@ -1,18 +1,32 @@
-import {StyleSheet} from 'react-native';
-const makeStyles = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingHorizontal: 10,
-    paddingTop: 16, // Adjust this value to position the header properly
-    paddingBottom: 16, // Adjust this value to position the header properly
-    backgroundColor: 'transparent', // Set the background color to transparent
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    zIndex: 1000,
-  },
-});
+import {StyleSheet, ViewStyle, TextStyle} from 'react-native';
+import {ExtendedTheme} from '@react-navigation/native';
+
+interface Styles {
+  titleContainer: ViewStyle;
+  title: TextStyle;
+  headerStyle: ViewStyle;
+}
+
+type Colors = ExtendedTheme['colors'];
+
+const makeStyles = (colors: Colors): Styles =>
+  StyleSheet.create<Styles>({
+    headerStyle: {
+      flexDirection: 'row',
+      paddingHorizontal: 10,
+      paddingTop: 14,
+      paddingBottom: 14,
+    },
+    titleContainer: {
+      flex: 1,
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    title: {
+      fontFamily: 'Montserrat-SemiBold',
+      fontSize: 20,
+      color: colors.textPrimary,
+    },
+  });
+
 export default makeStyles;

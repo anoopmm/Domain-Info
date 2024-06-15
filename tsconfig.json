@@ -1,3 +1,21 @@
 {
-  "extends": "@react-native/typescript-config/tsconfig.json"
+  "compilerOptions": {
+    // other compiler options
+    "target": "es5",
+    "module": "commonjs",
+    "strict": true,
+    "jsx": "react",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "baseUrl": "src", // Ensure your base URL is set correctly if needed
+  },
+  "include": [
+    "src",        // Ensure the src folder is included
+    "src/theme"   // Specifically include the src/theme folder
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

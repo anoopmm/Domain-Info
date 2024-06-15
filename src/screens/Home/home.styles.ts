@@ -1,6 +1,20 @@
-import {StyleSheet} from 'react-native';
-const makeStyles = (colors: any) =>
-  StyleSheet.create({
+import {StyleSheet, TextStyle, ViewStyle} from 'react-native';
+import {ExtendedTheme} from '@react-navigation/native';
+
+interface Styles {
+  container: ViewStyle;
+  contentContainer: ViewStyle;
+  label: TextStyle;
+  input: TextStyle;
+  validationMessage: TextStyle;
+  button: ViewStyle;
+  buttonText: TextStyle;
+}
+
+type Colors = ExtendedTheme['colors'];
+
+const makeStyles = (colors: Colors): Styles =>
+  StyleSheet.create<Styles>({
     container: {
       flex: 1,
       backgroundColor: colors.background,
@@ -11,9 +25,10 @@ const makeStyles = (colors: any) =>
       padding: 16,
     },
     label: {
-      fontSize: 18,
+      fontSize: 16,
+      fontWeight: '500',
       marginBottom: 8,
-      color: colors.textPrimary,
+      color: colors.text,
       fontFamily: 'Montserrat-Medium',
     },
     input: {
@@ -21,15 +36,15 @@ const makeStyles = (colors: any) =>
       borderColor: colors.border,
       borderWidth: 1,
       paddingHorizontal: 8,
-      marginBottom: 16,
+      marginBottom: 8,
       backgroundColor: colors.backgroundSecondary,
       borderRadius: 8,
-      fontFamily: 'Montserrat-Medium',
-      color: colors.textPrimary,
+      fontFamily: 'Montserrat-SemiBold',
+      color: colors.textSecondary,
+      fontSize: 16,
     },
     validationMessage: {
       color: colors.notification,
-      marginBottom: 8,
     },
     button: {
       backgroundColor: colors.primary,
@@ -37,11 +52,14 @@ const makeStyles = (colors: any) =>
       justifyContent: 'center',
       alignItems: 'center',
       borderRadius: 8,
+      marginTop: 16,
     },
     buttonText: {
-      color: colors.white,
-      fontSize: 20,
+      color: '#fff',
+      fontSize: 16,
+      fontWeight: '600',
       fontFamily: 'Montserrat-Medium',
     },
   });
+
 export default makeStyles;

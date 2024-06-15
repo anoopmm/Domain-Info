@@ -8,8 +8,6 @@ const useFetchCMS = (url: string): [string, boolean] => {
   useEffect(() => {
     const fetchCMS = async () => {
       try {
-        // const apiKey =
-        //   'w3889ag43xknyknh6bujk0nz0mo5ouxbiohgo7wvtv9insmay7ocab2k30pffdr7jrpfl2';
         const apiUrl = `https://whatcms.org/API/Tech?key=${keys.whatcms}&url=${url}`;
         const response = await fetch(apiUrl);
         const data = await response.json();

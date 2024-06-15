@@ -1,55 +1,73 @@
 // CustomHeader.tsx
-import React, {useContext} from 'react';
-import {View, TouchableOpacity} from 'react-native';
+import React, {useMemo} from 'react';
+import {View, Text, TouchableOpacity, ViewStyle, TextStyle} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import {useTheme} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
-import {AppContext} from '../../theme/appContext';
-import styles from './header.styles';
-type Props = {
+import makeStyles from './header.styles';
+
+interface CustomHeaderProps {
   navigation: StackNavigationProp<any>;
-  showBackButton?: boolean;
-  showSettingsButton?: boolean;
-};
+  leftAction?: () => void;
+  rightAction?: () => void;
+  showLeftButton?: boolean;
+  showRightButton?: boolean;
+  title?: string;
+  headerStyle?: ViewStyle;
+  titleStyle?: TextStyle;
+  leftIcon?: string;
+  rightIcon?: true extends CustomHeaderProps['showRightButton']
+    ? string
+    : never;
+}
 
-const CustomHeader: React.FC<Props> = ({
+const CustomHeader: React.FC<CustomHeaderProps> = ({
   navigation,
-  showBackButton = true,
-  showSettingsButton = true,
+  leftAction,
+  rightAction = () => {},
+  showLeftButton = false,
+  showRightButton = false,
+  title,
+  headerStyle,
+  titleStyle,
+  leftIcon = 'angle-left',
+  rightIcon = 'cog',
 }) => {
-  const {isDarkTheme} = useContext(AppContext);
-  const handleBackPress = () => {
-    navigation.goBack();
-  };
+  const {colors} = useTheme();
 
-  const handleSettingsPress = () => {
-    navigation.navigate('Settings');
+  // Memoizing the styles to avoid recalculating on each render
+  const styles = useMemo(() => makeStyles(colors), [colors]);
+  const handleLeftPress = () => {
+    if (leftAction) {
+      leftAction();
+    } else {
+      navigation.goBack();
+    }
   };
-
   return (
-    <View style={styles.container}>
+    <View style={[styles.headerStyle, headerStyle]}>
       <View>
-        {showBackButton && (
+        {showLeftButton && (
           <TouchableOpacity
-            onPress={handleBackPress}
+            onPress={handleLeftPress}
             hitSlop={{top: 20, bottom: 20, left: 30, right: 30}}>
-            <Icon
-              name="chevron-left"
-              size={26}
-              color={isDarkTheme ? '#fff' : '#6e6e6e'}
-            />
+            <Icon name={leftIcon} size={30} color={colors.textPrimary} />
           </TouchableOpacity>
         )}
       </View>
+      <View style={styles.titleContainer}>
+        {title && (
+          <Text style={[styles.title, titleStyle]} numberOfLines={1}>
+            {title}
+          </Text>
+        )}
+      </View>
       <View>
-        {showSettingsButton && (
+        {showRightButton && (
           <TouchableOpacity
-            onPress={handleSettingsPress}
+            onPress={rightAction}
             hitSlop={{top: 20, bottom: 20, left: 30, right: 30}}>
-            <Icon
-              name="cog"
-              size={26}
-              color={isDarkTheme ? '#fff' : '#6e6e6e'}
-            />
+            <Icon name={rightIcon} size={26} color={colors.textPrimary} />
           </TouchableOpacity>
         )}
       </View>

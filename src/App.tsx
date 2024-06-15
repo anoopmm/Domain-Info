@@ -7,7 +7,7 @@
 
 import React from 'react';
 
-import Router from './router';
+import Router from './navigation/router';
 function App(): React.JSX.Element {
   return <Router />;
 }
