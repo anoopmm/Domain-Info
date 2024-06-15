@@ -8,16 +8,25 @@ type Props = {
   onPress: () => void;
   icon: string;
   style?: ViewStyle;
+  disabled?: boolean;
 };
 
-const FloatingButton: React.FC<Props> = ({onPress, icon, style}) => {
+const FloatingButton: React.FC<Props> = ({
+  onPress,
+  icon,
+  style,
+  disabled = false,
+}) => {
   const {colors} = useTheme();
 
   // Memoize styles to avoid unnecessary re-renders
   const styles = useMemo(() => makeStyles(colors), [colors]);
 
   return (
-    <TouchableOpacity style={[styles.button, style]} onPress={onPress}>
+    <TouchableOpacity
+      disabled={disabled}
+      style={[styles.button, style]}
+      onPress={onPress}>
       <Icon name={icon} size={26} color={'#fff'} />
     </TouchableOpacity>
   );

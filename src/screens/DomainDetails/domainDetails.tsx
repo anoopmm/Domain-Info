@@ -1,5 +1,5 @@
-import React, {useMemo} from 'react';
-import {View, ScrollView, Alert, Text} from 'react-native';
+import React, {useMemo, useState} from 'react';
+import {View, ScrollView, Text, ToastAndroid} from 'react-native';
 import {RouteProp, useTheme} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import Share from 'react-native-share';
@@ -34,6 +34,8 @@ const DetailsScreen: React.FC<DetailsScreenProps> = ({route, navigation}) => {
     domainDataHooks.useGetDomainExpiration(url);
   const [location, isLocationLoading] =
     domainDataHooks.useGetServerLocation(url);
+  const [isShareButtonDisabled, setShareButtonDisableState] =
+    useState<boolean>(false);
   const {colors} = useTheme();
   const styles = useMemo(() => makeStyles(colors), [colors]);
 
@@ -42,6 +44,8 @@ const DetailsScreen: React.FC<DetailsScreenProps> = ({route, navigation}) => {
    * Converts the thumbnail image to base64 and constructs the share options.
    */
   const shareContent = async () => {
+    //Disabling share button for multiple press
+    setShareButtonDisableState(true);
     try {
       const base64Data = await convertImageToBase64(thumbnail);
       if (base64Data) {
@@ -53,18 +57,31 @@ const DetailsScreen: React.FC<DetailsScreenProps> = ({route, navigation}) => {
         };
 
         await Share.open(shareOptions);
+        setShareButtonDisableState(false);
       } else {
-        Alert.alert('Error', 'Failed to convert image to base64.');
+        setShareButtonDisableState(false);
+        ToastAndroid.show(
+          'An error occurred while sharing content.!',
+          ToastAndroid.SHORT,
+        );
       }
     } catch (error) {
+      setShareButtonDisableState(false);
       console.error('Error sharing content:', error);
-      Alert.alert('Error', 'An error occurred while sharing content.');
+      ToastAndroid.show(
+        'An error occurred while sharing content.!',
+        ToastAndroid.SHORT,
+      );
     }
   };
 
   return (
     <View style={styles.container}>
-      <FloatingButton icon="share" onPress={shareContent} />
+      <FloatingButton
+        icon="share"
+        onPress={shareContent}
+        disabled={isShareButtonDisabled}
+      />
       <Header
         navigation={navigation}
         showRightButton
@@ -87,7 +104,7 @@ const DetailsScreen: React.FC<DetailsScreenProps> = ({route, navigation}) => {
           <ImageThumbnailWithLink
             imageUrl={thumbnail}
             linkUrl={url}
-            loading={false}
+            loading={isThumbnailImageLoading}
           />
           <LabelValuePair label="CMS" value={cms} loading={isCMSLoading} />
           <LabelValuePair

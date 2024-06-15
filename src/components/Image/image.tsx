@@ -38,17 +38,15 @@ const ImageWithLoading: React.FC<ImageWithLoadingProps> = ({
         </View>
       )}
 
-      {!loading && (
-        <Image
-          source={source}
-          style={[
-            styles.image,
-            loading && ({display: 'none'} as ImageStyle),
-            style,
-          ]}
-          onLoadEnd={() => setLoading(false)}
-        />
-      )}
+      <Image
+        source={source}
+        style={[
+          styles.image,
+          loading && ({display: 'none'} as ImageStyle),
+          style,
+        ]}
+        onLoadEnd={() => setLoading(false)}
+      />
     </View>
   );
 };
