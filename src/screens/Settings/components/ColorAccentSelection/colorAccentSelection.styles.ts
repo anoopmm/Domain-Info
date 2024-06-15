@@ -15,17 +15,20 @@ const makeStyles = (colors: Colors): Styles =>
       justifyContent: 'space-between',
       alignItems: 'center',
       flexDirection: 'row',
-      borderBottomWidth: 1,
+      gap: 8,
+      height: 60,
+      borderBottomWidth: 0.4,
       borderBottomColor: colors.border,
       paddingVertical: 10,
     },
     labelText: {
       fontSize: 16,
-      color: colors.textSecondary,
+      color: colors.text,
       fontFamily: 'Montserrat-Medium',
     },
     colorButtonContainer: {
       flexDirection: 'row',
+      gap: 8,
     },
   });
 

@@ -31,7 +31,8 @@ const makeStyles = (colors: Colors): Styles =>
       padding: 16,
     },
     domainName: {
-      fontSize: 32,
+      fontSize: 22,
+      fontWeight: '600',
       fontFamily: 'Montserrat-Medium',
       color: colors.textSecondary,
     },

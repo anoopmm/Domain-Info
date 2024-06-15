@@ -26,6 +26,7 @@ const makeStyles = (colors: Colors): Styles =>
     },
     label: {
       fontSize: 16,
+      fontWeight: '500',
       marginBottom: 8,
       color: colors.text,
       fontFamily: 'Montserrat-Medium',
@@ -55,7 +56,8 @@ const makeStyles = (colors: Colors): Styles =>
     },
     buttonText: {
       color: '#fff',
-      fontSize: 20,
+      fontSize: 16,
+      fontWeight: '600',
       fontFamily: 'Montserrat-Medium',
     },
   });

@@ -2,7 +2,7 @@ import React, {useMemo} from 'react';
 import {View, Text} from 'react-native';
 import {useTheme} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
-import {RootStackParamList} from '../../router';
+import {RootStackParamList} from '../../navigation/homeStack';
 import makeStyles from './settings.styles';
 import Header from '../../components/Header/header';
 import DarkModeSwitch from './components/ModeSwitch/modeSwitch';

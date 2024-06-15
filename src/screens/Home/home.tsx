@@ -2,7 +2,7 @@ import React, {useState, useMemo} from 'react';
 import {View, Text, TextInput, TouchableOpacity} from 'react-native';
 import {useTheme} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
-import {RootStackParamList} from '../../router';
+import {RootStackParamList} from '../../navigation/homeStack';
 import makeStyles from './home.styles';
 import {extractDomainFromURL} from '../../helpers';
 import Header from '../../components/Header/header';

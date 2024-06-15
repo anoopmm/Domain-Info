@@ -14,7 +14,7 @@ type Colors = ExtendedTheme['colors'];
 const makeStyles = (colors: Colors): Styles =>
   StyleSheet.create<Styles>({
     container: {
-      borderTopWidth: 1,
+      borderTopWidth: 0.4,
       borderTopColor: colors.border,
       flex: 1,
       flexDirection: 'row',
@@ -29,12 +29,14 @@ const makeStyles = (colors: Colors): Styles =>
     },
     title: {
       fontSize: 16,
+      fontWeight: '500',
       marginBottom: 5,
       color: colors.textSecondary,
       fontFamily: 'Montserrat-Medium',
     },
     description: {
       fontSize: 16,
+      fontWeight: '500',
       color: colors.textPrimary,
       fontFamily: 'Montserrat-Regular',
     },

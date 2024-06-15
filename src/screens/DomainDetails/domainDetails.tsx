@@ -12,7 +12,7 @@ import FloatingButton from '../../components/FloatingButton/floatingButton';
 import TitleAndDescription from './components/TitleAndDescription/titleAndDescription';
 import ImageThumbnailWithLink from './components/ImageThumbnailWithLink/imageThumbnailWithLink';
 import {convertImageToBase64} from '../../helpers';
-import {RootStackParamList} from '../../router';
+import {RootStackParamList} from '../../navigation/homeStack';
 
 type StackParamList = {
   DomainDetails: {url: string};

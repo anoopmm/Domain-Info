@@ -5,48 +5,14 @@ import {
   DarkTheme,
   ExtendedTheme,
 } from '@react-navigation/native';
-import {StatusBar} from 'react-native';
-import {createStackNavigator} from '@react-navigation/stack';
-import HomeScreen from './screens/Home/home';
-import DomainDetailsScreen from './screens/DomainDetails/domainDetails';
-import SettingsScreen from './screens/Settings/settings';
-import themes from './theme';
-import {AppContext} from './theme/appContext';
-
-// Define the types for navigation parameters
-export type RootStackParamList = {
-  Home: undefined;
-  DomainDetails: {url: string};
-  Settings: undefined;
-};
-
-const Stack = createStackNavigator<RootStackParamList>();
-
-// Screen component for Home stack
-function HomeStackScreen() {
-  return (
-    <Stack.Navigator initialRouteName="Home">
-      <Stack.Screen
-        name="Home"
-        component={HomeScreen}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name="DomainDetails"
-        component={DomainDetailsScreen}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name="Settings"
-        component={SettingsScreen}
-        options={{headerShown: false}}
-      />
-    </Stack.Navigator>
-  );
-}
+import {StatusBar, SafeAreaView} from 'react-native';
+import themes from '../theme';
+import {AppContext} from '../theme/appContext';
+import makeStyles from './navigation.styles';
+import HomeStackScreen from './homeStack';
 
 // Main router component
-export default function Router() {
+const Router: React.FC = () => {
   const [isDarkTheme, setIsDarkTheme] = useState(true);
   const [colorAccent, setColorAccent] = useState('purple');
 
@@ -72,6 +38,10 @@ export default function Router() {
 
   // Retrieve the current theme object
   const theme = getTheme();
+  const {colors} = theme;
+
+  // Memoizing the styles to avoid recalculating on each render
+  const styles = useMemo(() => makeStyles(colors), [colors]);
 
   return (
     <NavigationContainer theme={theme}>
@@ -80,8 +50,12 @@ export default function Router() {
         barStyle={isDarkTheme ? 'light-content' : 'dark-content'}
       />
       <AppContext.Provider value={appContext}>
-        <HomeStackScreen />
+        <SafeAreaView style={styles.safeAreaContainer}>
+          <HomeStackScreen />
+        </SafeAreaView>
       </AppContext.Provider>
     </NavigationContainer>
   );
-}
+};
+
+export default Router;

@@ -14,13 +14,14 @@ const makeStyles = (colors: Colors): Styles =>
     switchContainer: {
       justifyContent: 'space-between',
       flexDirection: 'row',
+      alignItems: 'center',
       height: 60,
-      borderBottomWidth: 1,
+      borderBottomWidth: 0.4,
       borderBottomColor: colors.border,
     },
     labelText: {
       fontSize: 16,
-      color: colors.textSecondary,
+      color: colors.text,
       fontFamily: 'Montserrat-Medium',
     },
     switchLabelContainer: {

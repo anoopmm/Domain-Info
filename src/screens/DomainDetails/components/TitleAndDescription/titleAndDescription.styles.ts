@@ -17,7 +17,8 @@ const makeStyles = (colors: Colors): Styles =>
   StyleSheet.create<Styles>({
     container: {} as ViewStyle,
     title: {
-      fontSize: 20,
+      fontSize: 16,
+      fontWeight: '600',
       fontFamily: 'Montserrat-SemiBold',
       marginTop: 10,
       color: colors.textPrimary,
