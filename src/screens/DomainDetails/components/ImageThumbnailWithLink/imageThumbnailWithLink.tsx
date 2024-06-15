@@ -31,7 +31,7 @@ const ImageThumbnailWithLink: React.FC<ImageThumbnailWithLinkProps> = ({
   const styles = makeStyles(colors);
 
   const handlePress = () => {
-    Linking.openURL(linkUrl).catch(err =>
+    Linking.openURL(`https://${linkUrl}`).catch(err =>
       console.error('Failed to open URL:', err),
     );
   };
