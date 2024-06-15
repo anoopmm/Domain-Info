@@ -5,9 +5,14 @@ A simple mobile app to get data about domains like Screenshot,Title,Description,
 ## Screenshots
 
 <div style="display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap;">
-  <img src="screenshots/1.jpg" alt="Home Screen" width="200" style="margin: 30px;">
-  <img src="screenshots/2.jpg" alt="Domain Details Screen" width="200" style="margin: 30px;">
-  <img src="screenshots/3.jpg" alt="Settings Screen" width="200" style="margin: 30px;">
+  <img src="screenshots/1d.jpg" alt="Home Screen" width="200" style="margin: 30px;">
+  <img src="screenshots/2d.jpg" alt="Domain Details Screen" width="200" style="margin: 30px;">
+  <img src="screenshots/3d.jpg" alt="Settings Screen" width="200" style="margin: 30px;">
+</div>
+<div style="display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap;">
+  <img src="screenshots/1l.jpg" alt="Home Screen" width="200" style="margin: 30px;">
+  <img src="screenshots/2l.jpg" alt="Domain Details Screen" width="200" style="margin: 30px;">
+  <img src="screenshots/3l.jpg" alt="Settings Screen" width="200" style="margin: 30px;">
 </div>
 
 ## APIs Used
